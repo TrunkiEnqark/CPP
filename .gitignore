@@ -1,5 +1,6 @@
 /.vs
 /.vscode
+*.exe
 /TEST
 /tknp_tq.cpp
 /tknp_tq.exe
