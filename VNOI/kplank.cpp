@@ -24,9 +24,12 @@ int main() {
     dq.push_back(0);
     for (int i = 1; i <= n; ++i) {
         while (!dq.empty() && a[dq.back()] >= a[i]) dq.pop_back();
+
         l[i] = dq.back() + 1;
         dq.push_back(i);
+        cout << dq.front() << ' ' << dq.back() << endl;
     }
+    cout << endl;
     dq.clear();
     dq.push_back(n + 1);
     for (int i = n; i >= 1; --i) {
@@ -36,7 +39,7 @@ int main() {
     }
     int res = 0;
     for (int i = 1; i <= n; ++i) {
-        // cout << l[i] << ' ' << r[i] << endl;
+        cout << l[i] << ' ' << r[i] << endl;
         int len = r[i] - l[i] + 1;
         if (len < a[i]) continue;
         res = max(res, min(a[i], len));
