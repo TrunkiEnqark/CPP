@@ -27,6 +27,7 @@ int main() {
     }
 
     long long tmp = A;
+
     long long tor = A, hare = A;
     while (true) {
         tor = F(tor, B);
@@ -34,6 +35,7 @@ int main() {
         if (tor == hare) break;
     }
 
+    // L1
     hare = tmp;
     while (tor != hare) {
         cout << calc(hare, B);
