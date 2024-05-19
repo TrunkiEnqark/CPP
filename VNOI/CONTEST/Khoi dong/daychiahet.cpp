@@ -1,26 +1,32 @@
 #include <bits/stdc++.h>
 
-#define NAME ""
-#define repz(i, a) for (int i = 0; i < a; ++i)
-#define rep(i, a, b) for (int i = a; i <= b; ++i)
-#define repr(i, a, b) for (int i = b; i >= a; --i)
-#define ll long long
-#define ld long double
-#define ii pair<int, int>
-
 using namespace std;
 
+const int MOD = 1e9 + 7;
+const int N = 2000;
+
+int n, m, dp[N + 5][N + 5];
+
 int main() {
-    int n, m;
     cin >> n >> m;
-    int res = 0;
-    for (int i = 1; i <= n; ++i) {
-        int cnt = 1;
-        for (int j = 2; j <= m; ++j) {
-            cnt *= n/i;
+    memset(dp, 0, sizeof dp);
+    for (int j = 1; j <= n; ++j) 
+        dp[1][j] = 1;
+
+    for (int i = 1; i <= m; ++i) {
+        for (int j = 1; j <= n; ++j) {
+            for (int k = j; k <= n; k += j) {
+                dp[i + 1][k] += dp[i][j];
+                dp[i + 1][k] %= MOD;
+            }
         }
-        res += cnt;
-    }    
+    }
+
+    int res = 0;
+    for (int j = 1; j <= n; ++j) { 
+        res += dp[m][j];
+        res %= MOD;
+    }
     cout << res;
 
     return 0;
