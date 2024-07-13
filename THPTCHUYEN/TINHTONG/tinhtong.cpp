@@ -26,11 +26,12 @@ int64_t calculate(int64_t X, int64_t N) {
     if (N == 1) return X % MOD;
 
     if (N % 2 == 0) {
-        int64_t T = calculate(X, N/2);
-        return ((POW(X, N/2, MOD) + 1) * (T % MOD)) % MOD;
+        int64_t halfResult = calculate(X, N / 2);
+        int64_t powerTerm = powMod(X, N / 2, MOD);
+        return (((powerTerm + 1) % MOD) * halfResult) % MOD;
     }
 
-    return ((X % MOD) * ((1 + calculate(X, N - 1)) % MOD)) % MOD;
+    return (X * (1 + calculate(X, N - 1))) % MOD;
 }
 
 void solve() {
